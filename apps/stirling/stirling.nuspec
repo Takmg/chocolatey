@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>stirling</id>
+    <id>stirling-jp</id>
     <version>1.31</version>
     <title>Stirling (Install)</title>
     <authors>ＤＤＳ２（後藤和重）</authors>
