@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = 'Stop'; # stop on all errors
+$ErrorActionPreference = 'Stop'; # stop on all errors
 
 $toolsPath = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $destination = Join-Path (Get-ToolsLocation) $env:ChocolateyPackageName

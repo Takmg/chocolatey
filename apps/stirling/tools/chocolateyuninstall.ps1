@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Stop'
  
 $installPath = Join-Path (Get-ToolsLocation) $env:ChocolateyPackageName
  
