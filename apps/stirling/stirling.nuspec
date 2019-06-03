@@ -5,7 +5,7 @@
     <version>1.31</version>
     <title>Stirling (Install)</title>
     <authors>ＤＤＳ２（後藤和重）</authors>
-    <Copyright>Copyright (C) 1998-1999 ＤＤＳ２</Copyright>
+    <copyright>Copyright (C) 1998-1999 ＤＤＳ２</copyright>
     <owners>Takmg</owners>
     <projectUrl>https://www.vector.co.jp/vpack/browse/person/an006794.html</projectUrl>
     <tags>stirling binary-editor binary editor</tags>
@@ -17,6 +17,8 @@ If you're still using "undo-redo or a replaceable but only a famous editor," try
 With flexible customization and powerful features, 
 aimed to be a tool that you can not release it as you use it.
     </description>
+    <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
+    <iconUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/stirling/stirling.ico</iconUrl>
    </metadata>
   <files>
     <file src="tools\**" target="tools" />
