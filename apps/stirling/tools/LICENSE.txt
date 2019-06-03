@@ -32,6 +32,23 @@
 
 -------------------------------------------------------------------------------
 
+[Package Owner Comment]
+
 For details, check `stirling.txt` (included in` tools/stir131.lzh` or installation destination).
 
+Moreover, although I am following the conditions regarding redistribution, since mail was not received to the author, confirmation has not been done.
+If a problem occurs, it may stop delivery.
+
+Mr. DDS2 Please contact the following if there is a problem.
+takmg@outlook.jp
+
+[Package Owner Comment For Japanese]
 詳細は `tools/stir131.lzh` 内 又は インストール先にある `stirling.txt` を確認してください。
+
+また再配布に関して条件に従っておりますが、作者にメールが届かなかった為、確認が出来ていません。
+問題が発生した場合は、配信停止するかもしれません。
+
+DDS2様 もし問題があれば下記に連絡下さい。
+takmg@outlook.jp
+
+-------------------------------------------------------------------------------
