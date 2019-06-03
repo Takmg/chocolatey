@@ -1,0 +1,15 @@
+﻿VERIFICATION
+Verification is intended to assist the Chocolatey moderators and community
+in verifying that this package's contents are trustworthy.
+
+The embedded software have been downloaded from the listed download
+location on <https://www.vector.co.jp/soft/win95/util/se079072.html>
+and can be verified by doing the following:
+
+1. Download the following <http://ftp.vector.co.jp/10/71/2144/stir131.lzh>
+2. Get the checksum using one of the following command:
+  - Using checksum command 'checksum -t sha256 stir131.lzh'
+3. The checksums should match the following:
+ 
+  checksum type: sha256
+  checksum: BBE9FB3D9B076ECC68B8D015F6435A171847657D1CF521653B625DC93C74D1FA

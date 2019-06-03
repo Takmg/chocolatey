@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>stirling</id>
+    <version>1.31</version>
+    <title>Stirling (Install)</title>
+    <authors>ＤＤＳ２（後藤和重）</authors>
+    <Copyright>Copyright (C) 1998-1999 ＤＤＳ２</Copyright>
+    <owners>Takmg</owners>
+    <projectUrl>https://www.vector.co.jp/vpack/browse/person/an006794.html</projectUrl>
+    <tags>stirling binary-editor binary editor</tags>
+    <summary>Strongest new and standard binary editor that combines ease of use and high functionality</summary>
+    <description>Stirling is a high-performance binary editor that was developed with the aim of becoming the strongest standard as a new standard for binary editors for Windows.
+
+If you're still using "undo-redo or a replaceable but only a famous editor," try Stirling at this opportunity.
+
+With flexible customization and powerful features, 
+aimed to be a tool that you can not release it as you use it.
+    </description>
+   </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
