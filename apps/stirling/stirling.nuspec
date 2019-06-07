@@ -18,7 +18,7 @@ With flexible customization and powerful features,
 aimed to be a tool that you can not release it as you use it.
     </description>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
-    <iconUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/stirling/stirling.ico</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/stirling/stirling.png</iconUrl>
    </metadata>
   <files>
     <file src="tools\**" target="tools" />
