@@ -1,0 +1,12 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Deserialized.System.Object</T>
+      <T>Deserialized.System.Object</T>
+    </TN>
+    <MS>
+      <B N="Install">true</B>
+      <B N="Uninstall">true</B>
+    </MS>
+  </Obj>
+</Objs>

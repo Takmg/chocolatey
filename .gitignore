@@ -1,3 +1,7 @@
 # general
 *.nupkg
 
+# test directory
+/test/*.xml
+!/test/template.xml
+
