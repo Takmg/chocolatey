@@ -7,7 +7,6 @@
     <authors>ＤＤＳ２（後藤和重）</authors>
     <copyright>Copyright (C) 1998-1999 ＤＤＳ２</copyright>
     <owners>Takmg</owners>
-    <projectUrl>https://www.vector.co.jp/vpack/browse/person/an006794.html</projectUrl>
     <tags>stirling binary-editor binary editor</tags>
     <summary>Strongest new and standard binary editor that combines ease of use and high functionality</summary>
     <description>Stirling is a high-performance binary editor that was developed with the aim of becoming the strongest standard as a new standard for binary editors for Windows.
@@ -17,6 +16,7 @@ If you're still using "undo-redo or a replaceable but only a famous editor," try
 With flexible customization and powerful features, 
 aimed to be a tool that you can not release it as you use it.
     </description>
+    <projectUrl>https://www.vector.co.jp/vpack/browse/person/an006794.html</projectUrl>
     <licenseUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/stirling/tools/LICENSE.txt</licenseUrl>
     <releaseNotes>For details, check `stirling.txt` (included in` tools/stir131.lzh` or installation destination).</releaseNotes>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
