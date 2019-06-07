@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>massigra</id>
+    <version>0.45</version>
+    <title>massigra (Install)</title>
+    <authors>Toshi Fuku</authors>
+    <licenseUrl>http://www.massigra.net/</licenseUrl>
+    <projectUrl>http://www.massigra.net/</projectUrl>
+    <copyright>Copyright (C) 2012-2016 Toshi Fuku</copyright>
+    <owners>Takmg</owners>
+    <tags>massigra images graphics photo art image viewer image-viewer</tags>
+    <summary>MassiGra is simply and fast graphic viewer.</summary>
+    <description>MassiGra is simply and fast graphic viewer.
+
+MassiGra (マッシグラ) は、シンプルで高速な単画面型の画像ビューワです。</description>
+    <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
+    <iconUrl>https://raw.githubusercontent.com/zetamatta/nyagos/master/Etc/nyagos.ico</iconUrl>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
