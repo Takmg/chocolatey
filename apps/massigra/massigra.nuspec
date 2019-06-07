@@ -3,7 +3,7 @@
   <metadata>
     <id>massigra</id>
     <version>0.45</version>
-    <title>massigra (Install)</title>
+    <title>MassiGra (Install)</title>
     <authors>Toshi Fuku</authors>
     <licenseUrl>http://www.massigra.net/</licenseUrl>
     <projectUrl>http://www.massigra.net/</projectUrl>
@@ -15,7 +15,7 @@
 
 MassiGra (マッシグラ) は、シンプルで高速な単画面型の画像ビューワです。</description>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
-    <iconUrl>https://raw.githubusercontent.com/zetamatta/nyagos/master/Etc/nyagos.ico</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/massigra/massigra.ico</iconUrl>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
