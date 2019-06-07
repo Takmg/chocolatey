@@ -6,7 +6,7 @@ $destination = Join-Path (Get-ToolsLocation) $env:ChocolateyPackageName
 $packageArgs = @{
     packageName = $env:ChocolateyPackageName
     destination = $destination
-    file        = "$toolsPath\MassiGra045.lzh"
+    file        = "$toolsPath\MassiGra045.zip"
 }
 
 Get-ChocolateyUnzip @packageArgs
