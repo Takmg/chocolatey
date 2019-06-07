@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 
-[Package maintainer Comment]
+[Package maintainer comment]
 
 For details, check `Readme.txt` (included in` tools/MassiGra045.zip` or installation destination).
 
-[Package maintainer Comment For Japanese]
+[Package maintainer comment For Japanese]
 詳細は `tools/MassiGra045.zip` 内 又は インストール先にある `Readme.txt` を確認してください。
 
 -------------------------------------------------------------------------------

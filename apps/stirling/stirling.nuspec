@@ -17,6 +17,8 @@ If you're still using "undo-redo or a replaceable but only a famous editor," try
 With flexible customization and powerful features, 
 aimed to be a tool that you can not release it as you use it.
     </description>
+    <licenseUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/stirling/tools/LICENSE.txt</licenseUrl>
+    <releaseNotes>For details, check `stirling.txt` (included in` tools/stir131.lzh` or installation destination).</releaseNotes>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
     <iconUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/stirling/stirling.png</iconUrl>
    </metadata>
