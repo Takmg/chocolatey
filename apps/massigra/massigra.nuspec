@@ -15,7 +15,7 @@
 
 MassiGra (マッシグラ) は、シンプルで高速な単画面型の画像ビューワです。</description>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
-    <iconUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/massigra/massigra.ico</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/Takmg/chocolatey/master/apps/massigra/massigra.png</iconUrl>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
