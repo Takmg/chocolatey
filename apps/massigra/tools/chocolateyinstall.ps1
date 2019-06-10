@@ -14,5 +14,5 @@ Remove-Item $toolsPath\*.zip -ea 0
 
 # Create Shortcut
 $exename = Get-ChildItem( Join-Path $destination "*.exe")
-$lnkpath = Join-Path ([Environment]::GetFolderPath('Desktop')) ($env:ChocolateyPackageName + ".lnk")
+$lnkpath = Join-Path ([Environment]::GetFolderPath('Desktop')) ("MassiGra.lnk")
 Install-ChocolateyShortcut -ShortcutFilePath $lnkpath -TargetPath $exename[0].FullName
