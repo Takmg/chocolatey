@@ -3,3 +3,4 @@
 *.md        text eol=lf encoding=utf-8
 *.ps1       text eol=lf encoding=utf-8
 *.txt       text eol=lf encoding=utf-8
+*.py        text eol=lf encoding=utf-8
