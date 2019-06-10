@@ -17,5 +17,5 @@ Install-ChocolateyZipPackage @packageArgs
 
 # Create Shortcut
 $exename = Get-ChildItem( Join-Path $destination "*.exe")
-$lnkpath = Join-Path ([Environment]::GetFolderPath('Desktop')) ($exename[0].BaseName + ".lnk") 
+$lnkpath = Join-Path ([Environment]::GetFolderPath('Desktop')) ($env:ChocolateyPackageName + ".lnk") 
 Install-ChocolateyShortcut -ShortcutFilePath $lnkpath -TargetPath $exename[0].FullName
