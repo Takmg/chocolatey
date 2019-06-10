@@ -4,8 +4,7 @@ $installPath = Join-Path (Get-ToolsLocation) $env:ChocolateyPackageName
 
 if (Test-Path $installPath) {
     # Remove Shortcut
-    $exename = Get-ChildItem( Join-Path $installPath "*.exe")
-    $lnkpath = Join-Path ([Environment]::GetFolderPath('Desktop')) ($exename[0].BaseName + ".lnk")
+    $lnkpath = Join-Path ([Environment]::GetFolderPath('Desktop')) ("Stirling.lnk")
     Remove-Item -path $lnkpath -Force
 
     # Remove Install File
