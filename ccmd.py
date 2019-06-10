@@ -15,6 +15,7 @@ COMMAND_LIST = {
     'help': 0,
     'pack': 0,
     'update': 0,
+    'clobber': 0,
 }
 
 
@@ -41,11 +42,13 @@ def get_cmd_with_args():
 def help():
 
     # helpの表示
-    print("下記使い方")
+    print("\n下記使い方")
     print("{:<10}, {:<10}".format("Command", "need-args"))
     print("---------------------------")
     for kc, kv in COMMAND_LIST.items():
         print("{:<10}, {:<10}".format(kc, kv))
+    print("---------------------------")
+    print()
 
 
 # ------------------------------------------------------------------------------
@@ -88,6 +91,29 @@ def update(path, args):
 
 
 # ------------------------------------------------------------------------------
+# global_functions :: clobber
+# ------------------------------------------------------------------------------
+def clobber():
+
+    # パッケージファイルとXMLファイルの一覧を取得
+    fs = glob.glob("./**/*.nupkg", recursive=True)
+    fs += [f for f in glob.glob("./test/*.xml") if not f.endswith('template.xml')]
+    fs = sorted(list(set(fs)))
+
+    if len(fs) >= 1:
+        print()
+        print('-----------------------------------------------------')
+
+    # ファイルを削除
+    for pkg in fs:
+        os.remove(pkg)
+        print(f"削除:{pkg}")
+
+    if len(fs) >= 1:
+        print('-----------------------------------------------------')
+
+
+# ------------------------------------------------------------------------------
 # global_functions :: main
 # ------------------------------------------------------------------------------
 def main(cmd, args):
@@ -97,12 +123,17 @@ def main(cmd, args):
     if cmd not in COMMAND_LIST or COMMAND_LIST[cmd] != arg_cnt:
         print(f"引数に誤りがあります。")
         print(f"{COMMAND_LIST.keys()}オプションのいずれかを指定し、正しい引数を指定して下さい。")
-        return
+        return False
 
     # helpだった場合の処理
     if cmd == 'help':
         help()
-        return
+        return False
+
+    # clobberだった場合の処理
+    if cmd == 'clobber':
+        clobber()
+        return True
 
     # Pythonファイルのパスに移動し、サブディレクトリを取得する
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -116,7 +147,7 @@ def main(cmd, args):
     for p in paths:
         cmd_func(p, args)
 
-    print('\n処理が終了しました。\n')
+    return True
 
 
 # ------------------------------------------------------------------------------
@@ -124,4 +155,5 @@ def main(cmd, args):
 # ------------------------------------------------------------------------------
 if __name__ == '__main__':
     cmd, args = get_cmd_with_args()
-    main(cmd, args)
+    if main(cmd, args):
+        print('\n処理が終了しました。\n')
