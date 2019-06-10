@@ -14,6 +14,7 @@ import subprocess
 COMMAND_LIST = {
     'help': 0,
     'pack': 0,
+    'update': 0,
 }
 
 
@@ -38,6 +39,8 @@ def get_cmd_with_args():
 # global_functions :: help
 # ------------------------------------------------------------------------------
 def help():
+
+    # helpの表示
     print("下記使い方")
     print("{:<10}, {:<10}".format("Command", "need-args"))
     print("---------------------------")
@@ -49,7 +52,10 @@ def help():
 # global_functions :: pack
 # ------------------------------------------------------------------------------
 def pack(path, args):
+
     print('-----------------------------------------------------')
+
+    # ディレクトリの変更を行い cpackコマンドを実行する。
     os.chdir(path)
     subprocess.call('cpack', shell=True)
 
@@ -58,8 +64,28 @@ def pack(path, args):
         shutil.copyfile(file, f'../../test/{file}')
         shutil.copyfile("../../test/template.xml", f"../../test/{os.path.splitext(file)[0]}.xml")
         print(f'{file}のコピーが終了しました。')
+
     print('-----------------------------------------------------')
     print()
+
+
+# ------------------------------------------------------------------------------
+# global_functions :: update
+# ------------------------------------------------------------------------------
+def update(path, args):
+
+    # update.ps1が存在する場合は実行する。
+    os.chdir(path)
+    if os.path.isfile('update.ps1'):
+        print('-----------------------------------------------------')
+        print(f'[{path}]のアップデート中...')
+        ps = subprocess.Popen([
+            'powershell.exe', '-ExecutionPolicy', 'Unrestricted', './update.ps1'],
+            cwd=os.getcwd())
+        ps.wait()
+        print('-----------------------------------------------------')
+        print()
+
 
 # ------------------------------------------------------------------------------
 # global_functions :: main

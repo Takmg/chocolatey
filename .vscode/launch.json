@@ -10,7 +10,7 @@
         "program": "${file}",
         "console": "integratedTerminal",
         "args": [
-            "pack"
+            "update"
         ]
     }]
 }
