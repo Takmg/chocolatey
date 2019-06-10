@@ -14,7 +14,7 @@
     <licenseUrl>https://github.com/zetamatta/nyagos/blob/master/LICENSE</licenseUrl>
     <releaseNotes>https://github.com/zetamatta/nyagos/blob/master/Doc/release_note_en.md</releaseNotes>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
-    <iconUrl>https://raw.githubusercontent.com/zetamatta/nyagos/master/Etc/nyagos.png</iconUrl>
+    <iconUrl>https://rawcdn.githack.com/zetamatta/nyagos/6693e9c84d07e181f2cbefd59e94e03f3810d16b/Etc/nyagos.png</iconUrl>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
