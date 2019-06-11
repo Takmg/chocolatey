@@ -1,16 +1,16 @@
 $ErrorActionPreference = 'Stop'; # stop on all errors
-
-$toolsPath = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $destination = Join-Path (Get-ToolsLocation) $env:ChocolateyPackageName
-
 $packageArgs = @{
-    packageName = $env:ChocolateyPackageName
-    destination = $destination
-    file        = "$toolsPath\stir131.lzh"
+    packageName   = $env:ChocolateyPackageName
+    unzipLocation = $destination
+    softwareName  = 'stirling*'
+    url           = 'http://ftp.vector.co.jp/10/71/2144/stir131.lzh'
+    checksumType  = 'sha256' 
+    checksum      = 'BBE9FB3D9B076ECC68B8D015F6435A171847657D1CF521653B625DC93C74D1FA'
 }
 
-Get-ChocolateyUnzip @packageArgs
-Remove-Item $toolsPath\*.lzh -ea 0
+# Install stirling
+Install-ChocolateyZipPackage @packageArgs 
 
 # Create Shortcut
 $exename = Get-ChildItem( Join-Path $destination "*.exe")
