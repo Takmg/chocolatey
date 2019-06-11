@@ -97,7 +97,7 @@ def clobber():
 
     # パッケージファイルとXMLファイルの一覧を取得
     fs = glob.glob("./**/*.nupkg", recursive=True)
-    fs += [f for f in glob.glob("./test/*.xml") if not f.endswith('template.xml')]
+    fs += [f for f in glob.glob(".\\test\\*.xml") if not f.endswith('template.xml')]
     fs = sorted(list(set(fs)))
 
     if len(fs) >= 1:
