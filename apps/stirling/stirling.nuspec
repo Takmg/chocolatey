@@ -17,7 +17,7 @@ With flexible customization and powerful features,
 aimed to be a tool that you can not release it as you use it.
     </description>
     <projectUrl>https://www.vector.co.jp/vpack/browse/person/an006794.html</projectUrl>
-    <releaseNotes>For details, check `stirling.txt` (included in` tools/stir131.lzh` or installation destination).</releaseNotes>
+    <releaseNotes>For details, check `stirling.txt` (installation destination).</releaseNotes>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
     <iconUrl>https://rawcdn.githack.com/Takmg/chocolatey/80389a2a4331079fdc3b6e627355e411c804d24e/apps/stirling/stirling.png</iconUrl>
    </metadata>
