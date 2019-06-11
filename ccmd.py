@@ -49,6 +49,7 @@ def help():
         print("{:<10}, {:<10}".format(kc, kv))
     print("---------------------------")
     print()
+    return False
 
 
 # ------------------------------------------------------------------------------
@@ -100,17 +101,22 @@ def clobber():
     fs += [f for f in glob.glob(".\\test\\*.xml") if not f.endswith('template.xml')]
     fs = sorted(list(set(fs)))
 
-    if len(fs) >= 1:
-        print()
-        print('-----------------------------------------------------')
+    # 一つも削除するファイルが存在しない場合、戻る。
+    if not fs:
+        return False
+
+    print()
+    print('-----------------------------------------------------')
 
     # ファイルを削除
     for pkg in fs:
         os.remove(pkg)
         print(f"削除:{pkg}")
 
-    if len(fs) >= 1:
-        print('-----------------------------------------------------')
+    print('-----------------------------------------------------')
+
+    # 1行でも処理
+    return True
 
 
 # ------------------------------------------------------------------------------
@@ -127,13 +133,11 @@ def main(cmd, args):
 
     # helpだった場合の処理
     if cmd == 'help':
-        help()
-        return False
+        return help()
 
     # clobberだった場合の処理
     if cmd == 'clobber':
-        clobber()
-        return True
+        return clobber()
 
     # Pythonファイルのパスに移動し、サブディレクトリを取得する
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
