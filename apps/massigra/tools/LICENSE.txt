@@ -1,11 +1,13 @@
 -------------------------------------------------------------------------------
 
 [Package maintainer comment]
+This application is permitted to be redistributed on the condition that it is not for sale and that the inside of the package is not modified.
 For details, check `Readme.txt` (included in` tools/MassiGra045.zip` or installation destination).
 The LISENCE is also described in `Readme.txt` in the compressed file of the following URL.
 http://ftp.vector.co.jp/60/45/1855/MassiGra045.zip
 
 [Package maintainer comment For Japanese]
+本アプリケーションは販売目的でない事、パッケージ内を改変しない事を条件に再配布を許可されています。
 詳細は `tools/MassiGra045.zip` 内 又は インストール先にある `Readme.txt` を確認してください。
 LISENCEは以下のURLの圧縮ファイルの中にある`Readme.txt`にも記載されています。
 http://ftp.vector.co.jp/60/45/1855/MassiGra045.zip
