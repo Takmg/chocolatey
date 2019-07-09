@@ -42,12 +42,16 @@ def get_cmd_with_args():
 def help():
 
     # helpの表示
-    print("\n下記使い方")
-    print("{:<10}, {:<10}".format("Command", "need-args"))
+    print("下記使い方")
+    print()
+    print("[{:<10}, {:<10}]".format("command", "need-args-num"))
     print("---------------------------")
     for kc, kv in COMMAND_LIST.items():
-        print("{:<10}, {:<10}".format(kc, kv))
+        print(" {:<10}, {:<10}".format(kc, kv))
+    print()
+    print("[Example]")
     print("---------------------------")
+    print(f"{os.path.basename(__file__)} command need-args1 need-args2 ...")
     print()
     return False
 
@@ -128,7 +132,7 @@ def main(cmd, args):
     arg_cnt = len(args) if args is not None else 0
     if cmd not in COMMAND_LIST or COMMAND_LIST[cmd] != arg_cnt:
         print(f"引数に誤りがあります。")
-        print(f"{COMMAND_LIST.keys()}オプションのいずれかを指定し、正しい引数を指定して下さい。")
+        help()
         return False
 
     # helpだった場合の処理
