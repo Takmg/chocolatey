@@ -11,6 +11,7 @@
     <summary>NYAGOS is the commandline-shell written with the Programming Language GO and Lua.</summary>
     <description>NYAGOS is the commandline-shell written with the Programming Language GO and Lua.</description>
     <projectUrl>https://github.com/zetamatta/nyagos</projectUrl>
+    <projectSourceUrl>https://github.com/zetamatta/nyagos</projectSourceUrl>
     <licenseUrl>https://github.com/zetamatta/nyagos/blob/master/LICENSE</licenseUrl>
     <releaseNotes>https://github.com/zetamatta/nyagos/blob/master/Doc/release_note_en.md</releaseNotes>
     <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
