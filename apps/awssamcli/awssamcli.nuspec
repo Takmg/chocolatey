@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>awssamcli</id>
+    <version>1.24.1</version>
+    <title>AWS SAM Command Line Interface (Install)</title>
+    <authors>Amazon.com</authors>
+    <copyright>Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.</copyright>
+    <owners>Takmg</owners>
+    <tags>aws awscli awssamcli sam cloud amazon services</tags>
+    <summary>The AWS Serverless Application Model (SAM) Command Line Tools.</summary>
+    <description>The AWS Serverless Application Model (SAM) Command Line Tools.</description>
+    <projectUrl>https://github.com/aws/aws-sam-cli</projectUrl>
+    <projectSourceUrl>https://github.com/aws/aws-sam-cli</projectSourceUrl>
+    <licenseUrl>https://github.com/aws/aws-sam-cli/blob/develop/LICENSE</licenseUrl>
+    <releaseNotes>https://github.com/aws/aws-sam-cli/releases</releaseNotes>
+    <packageSourceUrl>https://github.com/Takmg/chocolatey</packageSourceUrl>
+    <iconUrl>https://rawcdn.githack.com/jtcmedia/chocolatey-packages/464457cc57f33f6243c27246755e4ac08ca3a9fb/icons/awscli.png</iconUrl>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
