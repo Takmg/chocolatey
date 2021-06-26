@@ -4,10 +4,10 @@
     <id>awssamcli</id>
     <version>1.24.1</version>
     <title>AWS SAM Command Line Interface (Install)</title>
-    <authors>Amazon.com</authors>
+    <authors>Amazon Web Services</authors>
     <copyright>Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.</copyright>
     <owners>Takmg</owners>
-    <tags>aws awscli awssamcli sam cloud amazon services</tags>
+    <tags>aws awscli awssamcli sam cli cloud amazon services</tags>
     <summary>The AWS Serverless Application Model (SAM) Command Line Tools.</summary>
     <description>The AWS Serverless Application Model (SAM) Command Line Tools.</description>
     <projectUrl>https://github.com/aws/aws-sam-cli</projectUrl>
