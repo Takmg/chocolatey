@@ -66,7 +66,7 @@ def pack(path, args):
 
     # ディレクトリの変更を行い cpackコマンドを実行する。
     os.chdir(path)
-    subprocess.call('cpack', shell=True)
+    subprocess.call('choco pack', shell=True)
 
     # ファイルをtestディレクトリにコピー
     for file in glob.glob('*.nupkg'):
