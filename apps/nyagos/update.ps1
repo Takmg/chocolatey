@@ -1,6 +1,6 @@
 import-module au
 
-$releases = 'https://github.com/zetamatta/nyagos/releases'
+$releases = 'https://api.github.com/repos/zetamatta/nyagos/releases/latest'
 
 function global:au_SearchReplace {
     @{
@@ -14,17 +14,14 @@ function global:au_SearchReplace {
 }
 
 function global:au_GetLatest {
-    $download_page = Invoke-WebRequest -Uri $releases -UseBasicParsing
-
-    $url32 = $download_page.links | ? href -match 'windows-386.zip' | % href | select -First 1
+    $download_data = Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json
+    $url32 = $download_data.assets | ? name -match "windows-386.zip" | select -First 1  -expand browser_download_url
     $url64 = $url32 -replace 'windows-386.zip$', 'windows-amd64.zip'
-    $version = (Split-Path ( Split-Path $url32 ) -Leaf)
-    $version = $version -replace '_', '.'
+    $version = $download_data.tag_name -replace 'v' , '' -replace '_', '.'
 
-    $domin = 'https://github.com'
     @{
-        URL32   = $domin + $url32
-        URL64   = $domin + $url64
+        URL32   = $url32
+        URL64   = $url64
         Version = $version
     }
 }

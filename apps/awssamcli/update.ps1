@@ -14,8 +14,7 @@ function global:au_SearchReplace {
 function global:au_GetLatest {
     $download_data = Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json
     $url64 = $download_data.assets | ? name -match "AWS_SAM_CLI_64_PY3" | select -First 1  -expand browser_download_url
-    $version = $download_data.tag_name
-    $version = $version -replace 'v' , ''
+    $version = $download_data.tag_name -replace 'v' , '' -replace '_', '.'
 
     @{
         URL64   = $url64
