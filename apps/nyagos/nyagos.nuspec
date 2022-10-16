@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>nyagos</id>
-    <version>4.4.13.0</version>
+    <version>4.4.13.1</version>
     <title>NYAGOS</title>
     <authors>zetamatta</authors>
     <copyright>Copyright (c) 2014-2017, HAYAMA_Kaoru(zetamatta) and nyaos.org All rights reserved.</copyright>
