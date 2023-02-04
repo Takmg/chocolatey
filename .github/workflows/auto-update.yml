@@ -15,7 +15,7 @@ jobs:
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
-          update.ps1
+          ./update.ps1
           git add .
           git commit -m "upgrade awssamcli"
           git push origin master
@@ -24,7 +24,7 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
-          update.ps1
+          ./update.ps1
           git add .
           git commit -m "upgrade nyagos"
           git push origin master
