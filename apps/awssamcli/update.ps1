@@ -22,4 +22,4 @@ function global:au_GetLatest {
     }
 }
 
-Update -ChecksumFor 64
+Update -ChecksumFor 64 -NoReadme
