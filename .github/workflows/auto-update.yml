@@ -14,29 +14,34 @@ jobs:
         run: choco apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
       - name: git settings
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
           ./update.ps1
-          chocolatey pack
-          chocolatey push
+          $result = &git diff --name-only --exit-code --relative=apps/awssamcli
+          if( -not ([string]::IsNullOrEmpty($result)) ) {
+            chocolatey pack
+            chocolatey push
+          }
+        continue-on-error: true
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
           ./update.ps1
-          chocolatey pack
-          chocolatey push
+          $result = &git diff --name-only --exit-code --relative=apps/nyagos
+          if( -not ([string]::IsNullOrEmpty($result)) ) {
+            chocolatey pack
+            chocolatey push
+          }
+        continue-on-error: true
       - name: commit
-        run: | 
-          git add .
-          git commit -m "upgrade nyagos"
-          git push origin master
-
-
-
-
-
-
-
+        run: |
+          $result = &git diff --name-only --exit-code
+          if( -not ([string]::IsNullOrEmpty($result)) ) {
+            git add .
+            git commit -m "update package"
+            git push origin master
+          }
+        continue-on-error: true
