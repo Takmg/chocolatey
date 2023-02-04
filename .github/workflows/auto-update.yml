@@ -12,24 +12,28 @@ jobs:
         run: chocolatey install au -y
       - name: set apikey
         run: choco apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
+      - name: git settings
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
           ./update.ps1
-          git add .
-          git commit -m "upgrade awssamcli"
-          git push origin master
           chocolatey pack
           chocolatey push
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
           ./update.ps1
+          chocolatey pack
+          chocolatey push
+      - name: commit
+        run: | 
           git add .
           git commit -m "upgrade nyagos"
           git push origin master
-          chocolatey pack
-          chocolatey push
+
 
 
 
