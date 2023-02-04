@@ -1,0 +1,38 @@
+name: auto update package
+on: push
+#  schedule:
+#    - cron: '0 0 * * *'
+
+jobs:
+  execute:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: install au
+        run: chocolatey install au -y
+      - name: set apikey
+        run: choco apikey --key ${{ secrets.CHOCOLATEY_APIKEY }}
+      - name: update awssamcli
+        working-directory: apps/awssamcli
+        run: |
+          update.ps1
+          git add .
+          git commit -m "upgrade awssamcli"
+          git push origin master
+          chocolatey pack
+          chocolatey push
+      - name: update nyagos
+        working-directory: apps/nyagos
+        run: |
+          update.ps1
+          git add .
+          git commit -m "upgrade nyagos"
+          git push origin master
+          chocolatey pack
+          chocolatey push
+
+
+
+
+
+
