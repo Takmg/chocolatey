@@ -11,14 +11,27 @@ runs:
   steps:
     - name: update
       working-directory: apps/${{ inputs.package_name }}
+      run: ./update.ps1
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
+      shell: powershell
+    - name: diff check
+      working-directory: apps/${{ inputs.package_name }}
       run: |
-        ./update.ps1
         $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
         if( -not ([string]::IsNullOrEmpty($result)) ) {
           chocolatey pack
           chocolatey install ${{ inputs.package_name }} -s . -y
           chocolatey push
         }
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
+      shell: powershell
+    - name: test
+      working-directory: apps/${{ inputs.package_name }}
+      run: |
         echo "aaaaa" > tmp.txt
         $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
         echo $result
