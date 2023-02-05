@@ -16,24 +16,24 @@ jobs:
           chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-      - name: update awssamcli
-        working-directory: apps/awssamcli
-        run: |
-          Start-Sleep -Seconds 1.5
-          ./update.ps1
-          $result = &git diff --name-only --exit-code --relative=apps/awssamcli
-          if( -not ([string]::IsNullOrEmpty($result)) ) {
-            chocolatey pack
-            chocolatey push
-          }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
           Start-Sleep -Seconds 1.5
           ./update.ps1
           $result = &git diff --name-only --exit-code --relative=apps/nyagos
+          if( -not ([string]::IsNullOrEmpty($result)) ) {
+            chocolatey pack
+            chocolatey push
+          }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: update awssamcli
+        working-directory: apps/awssamcli
+        run: |
+          Start-Sleep -Seconds 1.5
+          ./update.ps1
+          $result = &git diff --name-only --exit-code --relative=apps/awssamcli
           if( -not ([string]::IsNullOrEmpty($result)) ) {
             chocolatey pack
             chocolatey push
