@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - name: choco install package
+      - name: chocolatey install package
         run: chocolatey install au -y
       - name: settings
         run: |
@@ -36,6 +36,8 @@ jobs:
           $result = &git diff --name-only --relative=apps/awssamcli
           $resultAwsSamCli = !([string]::IsNullOrEmpty($result))
           chocolatey pack
+      - name: revert cert settings
+        run: "[System.Net.ServicePointManager]::ServerCertificateValidationCallback = $null"
       - name: commit
         run: |
           if( $resultNyagos -or $resultAwsSamCli ) {
