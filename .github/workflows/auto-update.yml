@@ -4,8 +4,12 @@ on:
   schedule:
    - cron: '0 0,12 * * *'
 
+env:
+  GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
-  execute:
+  all-update:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,9 +27,6 @@ jobs:
           $result = &git diff --name-only --relative=apps/nyagos
           $resultNyagos = !([string]::IsNullOrEmpty($result))
           chocolatey pack
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
@@ -33,9 +34,6 @@ jobs:
           $result = &git diff --name-only --relative=apps/awssamcli
           $resultAwsSamCli = !([string]::IsNullOrEmpty($result))
           chocolatey pack
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
       - name: commit
         run: |
           if( $resultNyagos -or $resultAwsSamCli ) {
