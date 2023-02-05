@@ -19,6 +19,7 @@ jobs:
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
+          Start-Sleep -Seconds 1.5
           ./update.ps1
           $result = &git diff --name-only --exit-code --relative=apps/awssamcli
           if( -not ([string]::IsNullOrEmpty($result)) ) {
@@ -30,6 +31,7 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
+          Start-Sleep -Seconds 1.5
           ./update.ps1
           $result = &git diff --name-only --exit-code --relative=apps/nyagos
           if( -not ([string]::IsNullOrEmpty($result)) ) {
