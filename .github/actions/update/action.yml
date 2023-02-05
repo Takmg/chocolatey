@@ -28,7 +28,9 @@ runs:
       shell: powershell
     - name: test2
       working-directory: apps/${{ inputs.package_name }}
-      run: Write-Output test2 | Out-File -NoNewline ./ReadMe.md -Append
+      run: |
+        Write-Output test2 | Out-File -NoNewline ./ReadMe.md -Append
+        cat ./ReadMe.md
       shell: powershell
     - name: test
       working-directory: apps/${{ inputs.package_name }}
