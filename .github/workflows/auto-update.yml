@@ -17,11 +17,11 @@ jobs:
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
       - name: update nyagos
-        uses: .github/actions/update
+        uses: ./.github/actions/update
         with:
           package_name: nyagos
       - name: update awssamcli
-        uses: .github/actions/update
+        uses: ./.github/actions/update
         with:
           package_name: awssamcli
       - name: commit
