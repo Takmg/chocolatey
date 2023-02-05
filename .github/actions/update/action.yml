@@ -19,6 +19,7 @@ runs:
           chocolatey install ${{ inputs.package_name }} -s . -y
           chocolatey push
         }
+        echo "aaaaa" > tmp.txt
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
