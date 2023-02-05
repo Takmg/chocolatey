@@ -28,6 +28,7 @@ jobs:
           }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
