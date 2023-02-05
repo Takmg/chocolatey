@@ -19,9 +19,9 @@ runs:
           chocolatey install ${{ inputs.package_name }} -s . -y
           chocolatey push
         }
-        echo "bbbbbb"
         echo "aaaaa" > tmp.txt
         $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
+        echo $result
         if( -not ([string]::IsNullOrEmpty($result)) ) {
           echo "test"
         }
