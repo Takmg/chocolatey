@@ -19,11 +19,11 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
-          Start-Sleep -Seconds 1.5
           ./update.ps1
           $result = &git diff --name-only --exit-code --relative=apps/nyagos
           if( -not ([string]::IsNullOrEmpty($result)) ) {
             chocolatey pack
+            chocolatey install nyagos -s . -y
             chocolatey push
           }
         env:
@@ -32,15 +32,16 @@ jobs:
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
-          Start-Sleep -Seconds 1.5
           ./update.ps1
           $result = &git diff --name-only --exit-code --relative=apps/awssamcli
           if( -not ([string]::IsNullOrEmpty($result)) ) {
             chocolatey pack
+            chocolatey install awssamcli -s . -y
             chocolatey push
           }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
       - name: commit
         run: |
           $result = &git diff --name-only --exit-code
