@@ -20,6 +20,8 @@ jobs:
           chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          # cert ignore
+          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
