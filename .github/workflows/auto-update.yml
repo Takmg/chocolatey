@@ -20,7 +20,8 @@ jobs:
         working-directory: apps/nyagos
         run: |
           ./update.ps1
-          $resultNyagos = &git diff --name-only --relative=apps/nyagos
+          $result = &git diff --name-only --relative=apps/nyagos
+          $resultNyagos = !([string]::IsNullOrEmpty($result))
           chocolatey pack
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,21 +30,22 @@ jobs:
         working-directory: apps/awssamcli
         run: |
           ./update.ps1
-          $resultAwsSamCli = &git diff --name-only --relative=apps/awssamcli
+          $result = &git diff --name-only --relative=apps/awssamcli
+          $resultAwsSamCli = !([string]::IsNullOrEmpty($result))
           chocolatey pack
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
       - name: commit
         run: |
-          if( (-not ([string]::IsNullOrEmpty($resultAwsSamCli))) -Or (-not ([string]::IsNullOrEmpty($resultNyagos))) ) {
+          if( $resultNyagos -or $resultAwsSamCli ) {
             git add .
             git commit -m "update package"
             git push origin master
           }
       - name: push nyagos
         working-directory: apps/nyagos
-        run: if( -not ([string]::IsNullOrEmpty($resultNyagos)) ) { chocolatey push }
+        run: if( $resultNyagos ) { chocolatey push }
       - name: push awssamcli
         working-directory: apps/awssamcli
-        run: if( -not ([string]::IsNullOrEmpty($resultAwsSamCli)) ) { chocolatey push }
+        run: if( $resultAwsSamCli ) { chocolatey push }
