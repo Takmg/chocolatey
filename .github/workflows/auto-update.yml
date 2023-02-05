@@ -10,10 +10,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: install au
         run: chocolatey install au -y
-      - name: set apikey
-        run: choco apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
-      - name: git settings
+      - name: settings
         run: |
+          chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
       - name: update awssamcli
@@ -25,7 +24,6 @@ jobs:
             chocolatey pack
             chocolatey push
           }
-        continue-on-error: true
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
@@ -35,7 +33,6 @@ jobs:
             chocolatey pack
             chocolatey push
           }
-        continue-on-error: true
       - name: commit
         run: |
           $result = &git diff --name-only --exit-code
@@ -44,4 +41,3 @@ jobs:
             git commit -m "update package"
             git push origin master
           }
-        continue-on-error: true
