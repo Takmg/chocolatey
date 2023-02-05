@@ -20,12 +20,8 @@ jobs:
         working-directory: apps/nyagos
         run: |
           ./update.ps1
-          $result = &git diff --name-only --relative=apps/nyagos
-          if( -not ([string]::IsNullOrEmpty($result)) ) {
-            chocolatey pack
-            chocolatey install nyagos -s . -y
-            chocolatey push
-          }
+          $resultNyagos = &git diff --name-only --relative=apps/nyagos
+          chocolatey pack
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
@@ -33,20 +29,21 @@ jobs:
         working-directory: apps/awssamcli
         run: |
           ./update.ps1
-          $result = &git diff --name-only --relative=apps/awssamcli
-          if( -not ([string]::IsNullOrEmpty($result)) ) {
-            chocolatey pack
-            chocolatey install awssamcli -s . -y
-            chocolatey push
-          }
+          $resultAwsSamCli = &git diff --name-only --relative=apps/awssamcli
+          chocolatey pack
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
       - name: commit
         run: |
-          $result = &git diff --name-only
-          if( -not ([string]::IsNullOrEmpty($result)) ) {
+          if( (-not ([string]::IsNullOrEmpty($resultAwsSamCli))) -Or (-not ([string]::IsNullOrEmpty($resultNyagos))) ) {
             git add .
             git commit -m "update package"
             git push origin master
           }
+      - name: push nyagos
+        working-directory: apps/nyagos
+        run: if( -not ([string]::IsNullOrEmpty($resultNyagos)) ) { chocolatey push }
+      - name: push awssamcli
+        working-directory: apps/awssamcli
+        run: if( -not ([string]::IsNullOrEmpty($resultAwsSamCli)) ) { chocolatey push }
