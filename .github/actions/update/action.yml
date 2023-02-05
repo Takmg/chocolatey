@@ -3,6 +3,9 @@ inputs:
   package_name:
     description: "package name"
     required: true
+  github_token:
+    description: "github token"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -17,7 +20,7 @@ runs:
           chocolatey push
         }
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
         GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
       shell: powershell
 

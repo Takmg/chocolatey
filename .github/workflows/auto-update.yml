@@ -20,10 +20,12 @@ jobs:
         uses: ./.github/actions/update
         with:
           package_name: nyagos
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: update awssamcli
         uses: ./.github/actions/update
         with:
           package_name: awssamcli
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: commit
         run: |
           $result = &git diff --name-only --exit-code
