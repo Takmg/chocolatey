@@ -1,0 +1,23 @@
+name: update
+inputs:
+  package_name:
+    description: "package name"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: update
+      working-directory: apps/${{ inputs.package_name }}
+      run: |
+        ./update.ps1
+        $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
+        if( -not ([string]::IsNullOrEmpty($result)) ) {
+          chocolatey pack
+          chocolatey install ${{ inputs.package_name }} -s . -y
+          chocolatey push
+        }
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
+      shell: powershell
+
