@@ -9,14 +9,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: update
-      working-directory: apps/${{ inputs.package_name }}
-      run: ./update.ps1
-      env:
-        GITHUB_TOKEN: ${{ inputs.github_token }}
-        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
-      shell: powershell
-    - name: diff check
+    # - name: update
+    #   working-directory: apps/${{ inputs.package_name }}
+    #   run: ./update.ps1
+    #   env:
+    #     GITHUB_TOKEN: ${{ inputs.github_token }}
+    #     GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
+    #   shell: powershell
+    - name: diff check and push
       working-directory: apps/${{ inputs.package_name }}
       run: | 
         $result = &git diff --name-only --relative=apps/${{ inputs.package_name }}
@@ -24,33 +24,23 @@ runs:
           chocolatey pack
           chocolatey install ${{ inputs.package_name }} -s . -y
           chocolatey push
-        } else { 
-          echo "no push" 
-          echo "no push2"
-        }
+        } 
       shell: powershell
     - name: test2
       working-directory: apps/${{ inputs.package_name }}
-      run: echo "aaaaa" >> ./ReadMe.md
+      run: Write-Output test2 | Out-File -NoNewline ./ReadMe.md -Append
       shell: powershell
     - name: test
       working-directory: apps/${{ inputs.package_name }}
-      run: $result = &git diff --name-only --relative=apps/${{ inputs.package_name }}
+      run: $result = &git diff --name-only 
       shell: powershell
     - name: test4
       working-directory: apps/${{ inputs.package_name }}
       run: echo $result
-      shell: powershell
-    - name: test5
-      working-directory: apps/${{ inputs.package_name }}
-      run: ls
       shell: powershell
     - name: test3
       working-directory: apps/${{ inputs.package_name }}
       run: |
         if( -not ([string]::IsNullOrEmpty($result)) ) { echo "test" } 
         else { echo "test2" }
-      env:
-        GITHUB_TOKEN: ${{ inputs.github_token }}
-        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
       shell: powershell
