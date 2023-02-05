@@ -42,11 +42,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: 1
-      # - name: commit
-      #   run: |
-      #     $result = &git diff --name-only --exit-code
-      #     if( -not ([string]::IsNullOrEmpty($result)) ) {
-      #       git add .
-      #       git commit -m "update package"
-      #       git push origin master
-      #     }
+      - name: commit
+        run: |
+          $result = &git diff --name-only
+          if( -not ([string]::IsNullOrEmpty($result)) ) {
+            git add .
+            git commit -m "update package"
+            git push origin master
+          }
