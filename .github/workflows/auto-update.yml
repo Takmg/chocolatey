@@ -1,15 +1,18 @@
 name: auto update package
 on: 
- schedule:
-   - cron: '0 0,12 * * *'
+  workflow_dispatch:
+  schedule:
+   - cron: '0 0,2,12 * * *'
 
 jobs:
   execute:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - name: install au
-        run: chocolatey install au -y
+      - name: install and upgrade
+        run: | 
+          cup all -y
+          chocolatey install au -y
       - name: settings
         run: |
           chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
