@@ -27,6 +27,8 @@ jobs:
             chocolatey pack
             chocolatey push
           }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
@@ -36,6 +38,8 @@ jobs:
             chocolatey pack
             chocolatey push
           }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit
         run: |
           $result = &git diff --name-only --exit-code

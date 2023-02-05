@@ -14,7 +14,7 @@ function global:au_SearchReplace {
 }
 
 function global:au_GetLatest {
-    $download_data = Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json
+    $download_data = &gh api $releases | ConvertFrom-Json
     $url32 = $download_data.assets | ? name -match "windows-386.zip" | select -First 1  -expand browser_download_url
     $url64 = $url32 -replace 'windows-386.zip$', 'windows-amd64.zip'
     $version = $download_data.tag_name -replace 'v' , '' -replace '_', '.'
