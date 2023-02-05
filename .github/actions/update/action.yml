@@ -18,7 +18,7 @@ runs:
       shell: powershell
     - name: diff check
       working-directory: apps/${{ inputs.package_name }}
-      run: $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
+      run: $result = &git diff --name-only --relative=apps/${{ inputs.package_name }}
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
@@ -46,7 +46,7 @@ runs:
       shell: powershell
     - name: test
       working-directory: apps/${{ inputs.package_name }}
-      run: $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
+      run: $result = &git diff --name-only --relative=apps/${{ inputs.package_name }}
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
