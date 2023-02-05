@@ -19,16 +19,12 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
-          # ./update.ps1
-          Write-Output test2 | Out-File -NoNewline ./ReadMe.md -Append
-          $result = &git diff --name-only --exit-code --relative=apps/nyagos
-          echo "aaaaaa"
-          echo $result 
+          ./update.ps1
+          $result = &git diff --name-only --relative=apps/nyagos
           if( -not ([string]::IsNullOrEmpty($result)) ) {
-            # chocolatey pack
-            # chocolatey install nyagos -s . -y
-            # chocolatey push
-            echo "in"
+            chocolatey pack
+            chocolatey install nyagos -s . -y
+            chocolatey push
           }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -36,9 +32,8 @@ jobs:
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
-          # ./update.ps1
-          $result = &git diff --name-only --exit-code --relative=apps/awssamcli
-          echo "aaaaaa"
+          ./update.ps1
+          $result = &git diff --name-only --relative=apps/awssamcli
           if( -not ([string]::IsNullOrEmpty($result)) ) {
             chocolatey pack
             chocolatey install awssamcli -s . -y
