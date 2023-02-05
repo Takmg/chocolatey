@@ -30,15 +30,37 @@ runs:
           chocolatey pack
           chocolatey install ${{ inputs.package_name }} -s . -y
           chocolatey push
-        } else { echo "no push" }
+        } else { 
+          echo "no push" 
+          echo "no push2"
+        }
       env:
+        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
+      shell: powershell
+    - name: test2
+      working-directory: apps/${{ inputs.package_name }}
+      run: echo "aaaaa" > tmp.txt
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
         GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
       shell: powershell
     - name: test
       working-directory: apps/${{ inputs.package_name }}
+      run: $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
+      shell: powershell
+    - name: test4
+      working-directory: apps/${{ inputs.package_name }}
+      run: $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
+      shell: powershell
+    - name: test3
+      working-directory: apps/${{ inputs.package_name }}
       run: |
-        echo "aaaaa" > tmp.txt
-        $result = &git diff --name-only --exit-code --relative=apps/${{ inputs.package_name }}
         echo $result
         if( -not ([string]::IsNullOrEmpty($result)) ) {
           echo "test"
@@ -47,4 +69,3 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY: "1"
       shell: powershell
-
