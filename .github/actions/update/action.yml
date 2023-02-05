@@ -41,6 +41,10 @@ runs:
       working-directory: apps/${{ inputs.package_name }}
       run: echo $result
       shell: powershell
+    - name: test5
+      working-directory: apps/${{ inputs.package_name }}
+      run: ls
+      shell: powershell
     - name: test3
       working-directory: apps/${{ inputs.package_name }}
       run: |
