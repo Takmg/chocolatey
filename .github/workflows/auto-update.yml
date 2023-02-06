@@ -27,6 +27,8 @@ jobs:
           # ./update.ps1
           $result = &git diff --name-only --relative=apps/nyagos
           $resultNyagos = !([string]::IsNullOrEmpty($result))
+          Add-Content -Path $env:GITHUB_ENV -Value "aaa=$aaa"
+          Add-Content -Path $env:GITHUB_ENV -Value "resultNyagos=$resultNyagos"
           chocolatey pack
       - name: update awssamcli
         working-directory: apps/awssamcli
@@ -34,6 +36,7 @@ jobs:
           # ./update.ps1
           $result = &git diff --name-only --relative=apps/awssamcli
           $resultAwsSamCli = !([string]::IsNullOrEmpty($result))
+          Add-Content -Path $env:GITHUB_ENV -Value "resultAwsSamCli=$resultAwsSamCli"
           chocolatey pack
       - name: commit
         run: |
