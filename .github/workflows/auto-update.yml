@@ -23,7 +23,6 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
-          $aaa="aaa"
           # ./update.ps1
           $result = &git diff --name-only --relative=apps/nyagos
           $resultNyagos = !([string]::IsNullOrEmpty($result))
@@ -40,7 +39,6 @@ jobs:
           chocolatey pack
       - name: commit
         run: |
-          echo $aaa
           if( $resultNyagos -or $resultAwsSamCli ) {
             git add .
             git commit -m "update package"
