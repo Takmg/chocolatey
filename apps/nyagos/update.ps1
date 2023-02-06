@@ -26,6 +26,4 @@ function global:au_GetLatest {
     }
 }
 
-echo ([System.Net.ServicePointManager]::ServerCertificateValidationCallback)
-          
-# update -NoReadme
+update -NoReadme

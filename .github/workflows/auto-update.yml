@@ -23,16 +23,15 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
-          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} ; ./update.ps1
+          ./update.ps1
           $result = &git diff --name-only --relative=apps/nyagos
           $resultNyagos = !([string]::IsNullOrEmpty($result))
-          Add-Content -Path $env:GITHUB_ENV -Value "aaa=$aaa"
           Add-Content -Path $env:GITHUB_ENV -Value "resultNyagos=$resultNyagos"
           chocolatey pack
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
-          # ./update.ps1
+          ./update.ps1
           $result = &git diff --name-only --relative=apps/awssamcli
           $resultAwsSamCli = !([string]::IsNullOrEmpty($result))
           Add-Content -Path $env:GITHUB_ENV -Value "resultAwsSamCli=$resultAwsSamCli"
