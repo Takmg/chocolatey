@@ -23,7 +23,8 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
-          # ./update.ps1
+          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} ; ./update.ps1
+          echo ([System.Net.ServicePointManager]::ServerCertificateValidationCallback)
           $result = &git diff --name-only --relative=apps/nyagos
           $resultNyagos = !([string]::IsNullOrEmpty($result))
           Add-Content -Path $env:GITHUB_ENV -Value "aaa=$aaa"
