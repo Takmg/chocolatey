@@ -23,23 +23,21 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
-          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
-          ./update.ps1
-          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = $null
+          $aaa="aaa"
+          # ./update.ps1
           $result = &git diff --name-only --relative=apps/nyagos
           $resultNyagos = !([string]::IsNullOrEmpty($result))
           chocolatey pack
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
-          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
-          ./update.ps1
-          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = $null
+          # ./update.ps1
           $result = &git diff --name-only --relative=apps/awssamcli
           $resultAwsSamCli = !([string]::IsNullOrEmpty($result))
           chocolatey pack
       - name: commit
         run: |
+          echo $aaa
           if( $resultNyagos -or $resultAwsSamCli ) {
             git add .
             git commit -m "update package"
