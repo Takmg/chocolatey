@@ -22,7 +22,4 @@ function global:au_GetLatest {
     }
 }
 
-$req = [System.Net.HttpWebRequest]::Create('https://github.com/aws/aws-sam-cli/releases/download/v1.73.0/AW S_SAM_CLI_64_PY3.msi');
-echo $req.servicepoint
-
 Update -ChecksumFor 64 -NoReadme
