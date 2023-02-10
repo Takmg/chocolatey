@@ -56,13 +56,13 @@ jobs:
             echo 'RESULT_AWSSAMCLI=0' >> $GITHUB_ENV
           fi
           chocolatey pack
-      - name: commit
-        shell: bash
-        run: |
-          git add .
-          git commit -m "update package"
-          git push origin master
-        if: ${{ env.RESULT_NYAGOS == 1 }} || ${{ env.RESULT_AWSSAMCLI == 1 }}
+      # - name: commit
+      #   shell: bash
+      #   run: |
+      #     git add .
+      #     git commit -m "update package"
+      #     git push origin master
+      #   if: ${{ ( env.RESULT_NYAGOS == 1 ) || ( env.RESULT_AWSSAMCLI == 1 ) }} 
       - name: push nyagos
         working-directory: apps/nyagos
         run: chocolatey push
