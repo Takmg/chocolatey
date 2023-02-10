@@ -56,16 +56,17 @@ jobs:
           fi
           chocolatey pack
       - name: commit
+        shell: bash
         run: |
           git add .
           git commit -m "update package"
           git push origin master
-        if: ${{ env.RESULT_NYAGOS }} || ${{ env.RESULT_AWSSAMCLI }}
+        if: env.RESULT_NYAGOS || env.RESULT_AWSSAMCLI
       - name: push nyagos
         working-directory: apps/nyagos
         run: chocolatey push
-        if: ${{ env.RESULT_NYAGOS }}
+        if: env.RESULT_NYAGOS
       - name: push awssamcli
         working-directory: apps/awssamcli
         run: chocolatey push
-        if: ${{ env.RESULT_AWSSAMCLI }}
+        if: env.RESULT_AWSSAMCLI
