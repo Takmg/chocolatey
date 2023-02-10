@@ -21,25 +21,34 @@ jobs:
           git config --local user.name "github-actions[bot]"
       - name: update nyagos
         working-directory: apps/nyagos
+        run: Start-Sleep 3 && ./update.ps1
+      - name: update awssamcli
+        working-directory: apps/awssamcli
+        run: Start-Sleep 3 && ./update.ps1
+      - name: diff nyagos
+        working-directory: apps/nyagos
+        shell: bash
         run: |
-          Start-Sleep 3
-          ./update.ps1
-          $result = &git diff --name-only --relative=apps/nyagos
-          $RESULT_NYAGOS = !([string]::IsNullOrEmpty($result))
-          Add-Content -Path $env:GITHUB_ENV -Value "RESULT_NYAGOS=$RESULT_NYAGOS"
+          result=`git diff --name-only --relative=apps/nyagos`
+          if [ -n "$result" ]; then
+            echo "RESULT_NYAGOS=true" >> $GITHUB_ENV
+          else 
+            echo "RESULT_NYAGOS=false" >> $GITHUB_ENV
+          fi
           chocolatey pack
       - name: update awssamcli
         working-directory: apps/awssamcli
+        shell: bash
         run: |
-          Start-Sleep 3
-          ./update.ps1
-          $result = &git diff --name-only --relative=apps/awssamcli
-          $RESULT_AWSSAMCLI = !([string]::IsNullOrEmpty($result))
-          Add-Content -Path $env:GITHUB_ENV -Value "RESULT_AWSSAMCLI=$RESULT_AWSSAMCLI"
+          result=`git diff --name-only --relative=apps/awssamcli`
+          if [ -n "$result" ]; then
+            echo "RESULT_AWSSAMCLI=true" >> $GITHUB_ENV
+          else 
+            echo "RESULT_AWSSAMCLI=false" >> $GITHUB_ENV
+          fi
           chocolatey pack
       - name: commit
         run: |
-          echo "push start"
           git add .
           git commit -m "update package"
           git push origin master
