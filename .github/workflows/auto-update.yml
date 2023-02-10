@@ -19,31 +19,32 @@ jobs:
           chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-      - name: update nyagos
-        uses: nick-fields/retry@v2
-        with:
-          timeout_seconds: 30
-          retry_wait_seconds: 3
-          max_attempts: 3
-          command: 'cd apps/nyagos; Start-Sleep -Seconds 3; ./update.ps1'
-      - name: update awssamcli
-        uses: nick-fields/retry@v2
-        with:
-          timeout_seconds: 30
-          retry_wait_seconds: 3
-          max_attempts: 3
-          command: 'cd apps/awssamcli; Start-Sleep -Seconds 3; ./update.ps1'
+      # - name: update nyagos
+      #   uses: nick-fields/retry@v2
+      #   with:
+      #     timeout_seconds: 30
+      #     retry_wait_seconds: 3
+      #     max_attempts: 3
+      #     command: 'cd apps/nyagos; Start-Sleep -Seconds 3; ./update.ps1'
+      # - name: update awssamcli
+      #   uses: nick-fields/retry@v2
+      #   with:
+      #     timeout_seconds: 30
+      #     retry_wait_seconds: 3
+      #     max_attempts: 3
+      #     command: 'cd apps/awssamcli; Start-Sleep -Seconds 3; ./update.ps1'
       - name: diff nyagos
         working-directory: apps/nyagos
         shell: bash
         run: |
-          result=`git diff --name-only --relative=apps/nyagos`
-          if [ -n "$result" ]; then
-            echo 'RESULT_NYAGOS="true"' >> $GITHUB_ENV
-          else 
-            echo 'RESULT_NYAGOS="false"' >> $GITHUB_ENV
-          fi
-          chocolatey pack
+          # result=`git diff --name-only --relative=apps/nyagos`
+          # if [ -n "$result" ]; then
+          #   echo 'RESULT_NYAGOS="true"' >> $GITHUB_ENV
+          # else 
+          #   echo 'RESULT_NYAGOS="false"' >> $GITHUB_ENV
+          # fi
+          # chocolatey pack
+          echo 'RESULT_NYAGOS="true"' >> $GITHUB_ENV
       - name: diff awssamcli
         working-directory: apps/awssamcli
         shell: bash
