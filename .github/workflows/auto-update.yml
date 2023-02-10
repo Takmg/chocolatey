@@ -39,21 +39,21 @@ jobs:
         run: |
           # result=`git diff --name-only --relative=apps/nyagos`
           # if [ -n "$result" ]; then
-          #   echo 'RESULT_NYAGOS="true"' >> $GITHUB_ENV
+          #   echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
           # else 
-          #   echo 'RESULT_NYAGOS="false"' >> $GITHUB_ENV
+          #   echo 'RESULT_NYAGOS=0' >> $GITHUB_ENV
           # fi
           # chocolatey pack
-          echo 'RESULT_NYAGOS="true"' >> $GITHUB_ENV
+          echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
       - name: diff awssamcli
         working-directory: apps/awssamcli
         shell: bash
         run: |
           result=`git diff --name-only --relative=apps/awssamcli`
           if [ -n "$result" ]; then
-            echo 'RESULT_AWSSAMCLI="true"' >> $GITHUB_ENV
+            echo 'RESULT_AWSSAMCLI=1' >> $GITHUB_ENV
           else 
-            echo 'RESULT_AWSSAMCLI="false"' >> $GITHUB_ENV
+            echo 'RESULT_AWSSAMCLI=0' >> $GITHUB_ENV
           fi
           chocolatey pack
       - name: commit
@@ -62,12 +62,12 @@ jobs:
           git add .
           git commit -m "update package"
           git push origin master
-        if: ${{ env.RESULT_NYAGOS == 'true' || env.RESULT_AWSSAMCLI == 'true' }}
+        if: ${{ env.RESULT_NYAGOS || env.RESULT_AWSSAMCLI }}
       - name: push nyagos
         working-directory: apps/nyagos
         run: chocolatey push
-        if: ${{ env.RESULT_NYAGOS == 'true' }}
+        if: ${{ env.RESULT_NYAGOS }}
       - name: push awssamcli
         working-directory: apps/awssamcli
         run: chocolatey push
-        if: ${{ env.RESULT_AWSSAMCLI == 'true' }}
+        if: ${{ env.RESULT_AWSSAMCLI }}
