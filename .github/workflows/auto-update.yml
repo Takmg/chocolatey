@@ -62,7 +62,7 @@ jobs:
           git add .
           git commit -m "update package"
           git push origin master
-        if: ${{ env.RESULT_NYAGOS || env.RESULT_AWSSAMCLI }}
+        if: ${{ env.RESULT_NYAGOS }} || ${{ env.RESULT_AWSSAMCLI }}
       - name: push nyagos
         working-directory: apps/nyagos
         run: chocolatey push
