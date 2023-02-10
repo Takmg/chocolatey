@@ -23,16 +23,16 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           timeout_seconds: 30
-          retry_wait_seconds: 10
-          max_attempts: 5
-          command: 'cd apps/nyagos; ./update.ps1'
+          retry_wait_seconds: 3
+          max_attempts: 3
+          command: 'cd apps/nyagos; Start-Sleep -Seconds 3; ./update.ps1'
       - name: update awssamcli
         uses: nick-fields/retry@v2
         with:
           timeout_seconds: 30
-          retry_wait_seconds: 10
-          max_attempts: 5
-          command: 'cd apps/awssamcli; ./update.ps1'
+          retry_wait_seconds: 3
+          max_attempts: 3
+          command: 'cd apps/awssamcli; Start-Sleep -Seconds 3; ./update.ps1'
       - name: diff nyagos
         working-directory: apps/nyagos
         shell: bash
