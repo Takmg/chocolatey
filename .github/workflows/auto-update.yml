@@ -24,13 +24,13 @@ jobs:
         with:
           timeout_seconds: 5
           max_attempts: 5
-          command: 'cd apps/nyagos && ./update.ps1'
+          command: 'cd apps/nyagos; ./update.ps1'
       - name: update awssamcli
         uses: nick-fields/retry@v2
         with:
           timeout_seconds: 5
           max_attempts: 5
-          command: 'cd apps/awssamcli && ./update.ps1'
+          command: 'cd apps/awssamcli; ./update.ps1'
       - name: diff nyagos
         working-directory: apps/nyagos
         shell: bash
@@ -42,7 +42,7 @@ jobs:
             echo "RESULT_NYAGOS=false" >> $GITHUB_ENV
           fi
           chocolatey pack
-      - name: update awssamcli
+      - name: diff awssamcli
         working-directory: apps/awssamcli
         shell: bash
         run: |
