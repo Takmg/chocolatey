@@ -1,8 +1,8 @@
 name: auto update package
-on: 
+on:
   workflow_dispatch:
   schedule:
-   - cron: '0 0,12 * * *'
+    - cron: '0 0,12 * * *'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,11 +20,17 @@ jobs:
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
       - name: update nyagos
-        working-directory: apps/nyagos
-        run: Start-Sleep 3 && ./update.ps1
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 5
+          max_attempts: 5
+          command: 'cd apps/nyagos && ./update.ps1'
       - name: update awssamcli
-        working-directory: apps/awssamcli
-        run: Start-Sleep 3 && ./update.ps1
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 5
+          max_attempts: 5
+          command: 'cd apps/awssamcli && ./update.ps1'
       - name: diff nyagos
         working-directory: apps/nyagos
         shell: bash
@@ -59,5 +65,5 @@ jobs:
         if: ${{ env.RESULT_NYAGOS }}
       - name: push awssamcli
         working-directory: apps/awssamcli
-        run: chocolatey push 
+        run: chocolatey push
         if: ${{ env.RESULT_AWSSAMCLI }}
