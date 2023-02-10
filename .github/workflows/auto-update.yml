@@ -44,7 +44,7 @@ jobs:
           #   echo 'RESULT_NYAGOS=0' >> $GITHUB_ENV
           # fi
           # chocolatey pack
-          echo 'RESULT_NYAGOS=0' >> $GITHUB_ENV
+          echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
       - name: diff awssamcli
         working-directory: apps/awssamcli
         shell: bash
