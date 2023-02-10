@@ -22,6 +22,7 @@ jobs:
       - name: update nyagos
         working-directory: apps/nyagos
         run: |
+          Start-Sleep 3
           ./update.ps1
           $result = &git diff --name-only --relative=apps/nyagos
           $resultNyagos = !([string]::IsNullOrEmpty($result))
@@ -30,6 +31,7 @@ jobs:
       - name: update awssamcli
         working-directory: apps/awssamcli
         run: |
+          Start-Sleep 3
           ./update.ps1
           $result = &git diff --name-only --relative=apps/awssamcli
           $resultAwsSamCli = !([string]::IsNullOrEmpty($result))
@@ -37,7 +39,10 @@ jobs:
           chocolatey pack
       - name: commit
         run: |
+          echo $resultNyagos
+          echo $resultAwsSamCli
           if( $resultNyagos -or $resultAwsSamCli ) {
+            echo "push start"
             git add .
             git commit -m "update package"
             git push origin master
@@ -47,4 +52,9 @@ jobs:
         run: if( $resultNyagos ) { chocolatey push }
       - name: push awssamcli
         working-directory: apps/awssamcli
-        run: if( $resultAwsSamCli ) { chocolatey push }
+        run: |
+          echo $resultAwsSamCli
+          if( $resultAwsSamCli ) { 
+            echo "push start"
+            chocolatey push 
+          }
