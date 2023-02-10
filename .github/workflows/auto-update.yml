@@ -41,7 +41,7 @@ jobs:
           if [ -n "$result" ]; then
             echo 'RESULT_NYAGOS="true"' >> $GITHUB_ENV
           else 
-            echo 'RESULT_NYAGOS="fa;se"' >> $GITHUB_ENV
+            echo 'RESULT_NYAGOS="false"' >> $GITHUB_ENV
           fi
           chocolatey pack
       - name: diff awssamcli
