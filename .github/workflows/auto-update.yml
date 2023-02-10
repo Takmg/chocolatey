@@ -2,7 +2,7 @@ name: auto update package
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0,12 * * *'
+    - cron: '0 */3 * * *'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -19,32 +19,31 @@ jobs:
           chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-      # - name: update nyagos
-      #   uses: nick-fields/retry@v2
-      #   with:
-      #     timeout_seconds: 30
-      #     retry_wait_seconds: 3
-      #     max_attempts: 3
-      #     command: 'cd apps/nyagos; Start-Sleep -Seconds 3; ./update.ps1'
-      # - name: update awssamcli
-      #   uses: nick-fields/retry@v2
-      #   with:
-      #     timeout_seconds: 30
-      #     retry_wait_seconds: 3
-      #     max_attempts: 3
-      #     command: 'cd apps/awssamcli; Start-Sleep -Seconds 3; ./update.ps1'
+      - name: update nyagos
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 30
+          retry_wait_seconds: 3
+          max_attempts: 3
+          command: 'cd apps/nyagos; Start-Sleep -Seconds 5; ./update.ps1'
+      - name: update awssamcli
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 30
+          retry_wait_seconds: 3
+          max_attempts: 3
+          command: 'cd apps/awssamcli; Start-Sleep -Seconds 5; ./update.ps1'
       - name: diff nyagos
         working-directory: apps/nyagos
         shell: bash
         run: |
-          # result=`git diff --name-only --relative=apps/nyagos`
-          # if [ -n "$result" ]; then
-          #   echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
-          # else 
-          #   echo 'RESULT_NYAGOS=0' >> $GITHUB_ENV
-          # fi
-          # chocolatey pack
-          echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
+          result=`git diff --name-only --relative=apps/nyagos`
+          if [ -n "$result" ]; then
+            echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
+          else 
+            echo 'RESULT_NYAGOS=0' >> $GITHUB_ENV
+          fi
+          chocolatey pack
       - name: diff awssamcli
         working-directory: apps/awssamcli
         shell: bash
@@ -59,10 +58,9 @@ jobs:
       - name: commit
         shell: bash
         run: |
-          echo "aaaaaaa"
-          # git add .
-          # git commit -m "update package"
-          # git push origin master
+          git add .
+          git commit -m "update package"
+          git push origin master
         if: ${{ ( env.RESULT_NYAGOS == 1 ) || ( env.RESULT_AWSSAMCLI == 1 ) }} 
       - name: push nyagos
         working-directory: apps/nyagos
