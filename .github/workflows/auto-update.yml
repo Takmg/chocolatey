@@ -6,6 +6,8 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  RESULT_NYAGOS: 0
+  RESULT_AWSSAMCLI: 0
 
 jobs:
   all-update:
@@ -39,22 +41,18 @@ jobs:
         run: |
           result=`git diff --name-only --relative=apps/nyagos`
           if [ -n "$result" ]; then
+            chocolatey pack
             echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
-          else 
-            echo 'RESULT_NYAGOS=0' >> $GITHUB_ENV
           fi
-          chocolatey pack
       - name: diff awssamcli
         working-directory: apps/awssamcli
         shell: bash
         run: |
           result=`git diff --name-only --relative=apps/awssamcli`
           if [ -n "$result" ]; then
+            chocolatey pack
             echo 'RESULT_AWSSAMCLI=1' >> $GITHUB_ENV
-          else 
-            echo 'RESULT_AWSSAMCLI=0' >> $GITHUB_ENV
           fi
-          chocolatey pack
       - name: commit
         shell: bash
         run: |
