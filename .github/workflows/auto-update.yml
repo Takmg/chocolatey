@@ -6,8 +6,8 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  RESULT_NYAGOS: 0
-  RESULT_AWSSAMCLI: 0
+  RESULT_NYAGOS: null
+  RESULT_AWSSAMCLI: null
 
 jobs:
   all-update:
@@ -59,12 +59,12 @@ jobs:
           git add .
           git commit -m "update package"
           git push origin master
-        if: ${{ ( env.RESULT_NYAGOS == 1 ) || ( env.RESULT_AWSSAMCLI == 1 ) }} 
+        if: ${{ env.RESULT_NYAGOS || env.RESULT_AWSSAMCLI }} 
       - name: push nyagos
         working-directory: apps/nyagos
         run: chocolatey push
-        if: ${{ env.RESULT_NYAGOS == 1 }}
+        if: ${{ env.RESULT_NYAGOS }}
       - name: push awssamcli
         working-directory: apps/awssamcli
         run: chocolatey push
-        if: ${{ env.RESULT_AWSSAMCLI == 1 }}
+        if: ${{ env.RESULT_AWSSAMCLI }}
