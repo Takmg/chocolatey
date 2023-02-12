@@ -24,7 +24,7 @@ jobs:
       - name: update nyagos
         uses: nick-fields/retry@v2
         with:
-          timeout_seconds: 10
+          timeout_seconds: 30
           retry_wait_seconds: 3
           max_attempts: 3
           command: 
@@ -34,7 +34,7 @@ jobs:
       - name: update awssamcli
         uses: nick-fields/retry@v2
         with:
-          timeout_seconds: 10
+          timeout_seconds: 30
           retry_wait_seconds: 3
           max_attempts: 3
           command: > 
