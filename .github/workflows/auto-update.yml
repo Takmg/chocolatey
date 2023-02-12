@@ -27,11 +27,11 @@ jobs:
           timeout_seconds: 10
           retry_wait_seconds: 3
           max_attempts: 3
-          command: > 
+          command: 
             cd apps/nyagos; 
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls13; 
             Start-Sleep -Seconds 5; 
-            ./update.ps1'
+            ./update.ps1
       - name: update awssamcli
         uses: nick-fields/retry@v2
         with:
@@ -42,7 +42,7 @@ jobs:
             cd apps/awssamcli; 
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls13; 
             Start-Sleep -Seconds 5; 
-            ./update.ps1'
+            ./update.ps1
       - name: diff nyagos
         working-directory: apps/nyagos
         shell: bash
