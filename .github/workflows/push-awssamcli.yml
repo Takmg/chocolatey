@@ -9,7 +9,6 @@ jobs:
   push-awssamcli:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
       - working-directory: apps/awssamcli
         run: | 
           chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
