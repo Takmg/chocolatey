@@ -29,7 +29,6 @@ jobs:
           max_attempts: 3
           command: 
             cd apps/nyagos; 
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls13; 
             Start-Sleep -Seconds 5; 
             ./update.ps1
       - name: update awssamcli
@@ -40,7 +39,6 @@ jobs:
           max_attempts: 3
           command: > 
             cd apps/awssamcli; 
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls13; 
             Start-Sleep -Seconds 5; 
             ./update.ps1
       - name: diff nyagos
