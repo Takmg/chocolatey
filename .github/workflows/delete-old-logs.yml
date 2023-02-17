@@ -1,0 +1,25 @@
+name: auto update package
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  remove-old-logs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: delete-old-logs
+        run: |
+          # 現在時刻より-1日以前のログを全て取得する
+          now=`date -d '2 day ago' +%s`
+          json=$(gh api /repos/Takmg/chocolatey/actions/runs | jq "[.workflow_runs[] | { id: .id, created_at: .created_at, unix: (.created_at|fromdate)} | select(.unix < $now)]")
+          json_len=$(echo $json | jq length)
+
+          # 対象のログを全て削除する
+          for i in $( seq 0 $(($json_len - 1)) ); do
+            target_id=$(echo $json | jq ".[$i].id")
+            gh api --method DELETE /repos/Takmg/chocolatey/actions/runs/$target_id
+          done
