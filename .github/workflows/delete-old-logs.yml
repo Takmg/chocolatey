@@ -23,3 +23,6 @@ jobs:
             target_id=$(echo $json | jq ".[$i].id")
             gh api --method DELETE /repos/Takmg/chocolatey/actions/runs/$target_id
           done
+
+          # ログ出力
+          echo "$json_len logs deleted"
