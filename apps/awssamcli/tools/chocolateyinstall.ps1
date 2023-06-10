@@ -2,7 +2,7 @@
 
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $url64 = 'https://github.com/aws/aws-sam-cli/releases/download/v1.86.1/AWS_SAM_CLI_64_PY3.msi'
-$checksum64 = 'a12acbbc5e6b5f377b5e9276f8a80246f0be66dd931eb096313bd1aea836fcec'
+$checksum64 = '9D381F63A2D537DD322EF024EF6F0B2D4C91F94D2D62864D5DE3373CBCE5C518'
 
 $packageArgs = @{
   packageName    = $env:ChocolateyPackageName
