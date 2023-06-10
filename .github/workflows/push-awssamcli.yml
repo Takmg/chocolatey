@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v3
       - working-directory: apps/awssamcli
         run: | 
-          choco apikey --key ${{ secrets.CHOCOLATEY_APIKEY }}
+          choco apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
           choco pack
           choco push --source https://push.chocolatey.org/
