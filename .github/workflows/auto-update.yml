@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: chocolatey install package
-        run: chocolatey install au -y
+        run: choco install au -y
       - name: settings
         run: |
-          chocolatey apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
+          choco apikey --key ${{ secrets.CHOCOLATEY_APIKEY }} --source https://push.chocolatey.org/
           git config --local user.email "49090285+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
       - name: update nyagos
@@ -47,7 +47,7 @@ jobs:
         run: |
           result=`git diff --name-only --relative=apps/nyagos`
           if [ -n "$result" ]; then
-            chocolatey pack
+            choco pack
             echo 'RESULT_NYAGOS=1' >> $GITHUB_ENV
           fi
       - name: diff awssamcli
@@ -56,7 +56,7 @@ jobs:
         run: |
           result=`git diff --name-only --relative=apps/awssamcli`
           if [ -n "$result" ]; then
-            chocolatey pack
+            choco pack
             echo 'RESULT_AWSSAMCLI=1' >> $GITHUB_ENV
           fi
       - name: commit
@@ -68,9 +68,9 @@ jobs:
         if: ${{ env.RESULT_NYAGOS || env.RESULT_AWSSAMCLI }} 
       - name: push nyagos
         working-directory: apps/nyagos
-        run: chocolatey push
+        run: choco push
         if: ${{ env.RESULT_NYAGOS }}
       - name: push awssamcli
         working-directory: apps/awssamcli
-        run: chocolatey push
+        run: choco push
         if: ${{ env.RESULT_AWSSAMCLI }}
