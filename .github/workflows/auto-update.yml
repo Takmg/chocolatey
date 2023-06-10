@@ -68,9 +68,9 @@ jobs:
         if: ${{ env.RESULT_NYAGOS || env.RESULT_AWSSAMCLI }} 
       - name: push nyagos
         working-directory: apps/nyagos
-        run: choco push
+        run: choco push --source https://push.chocolatey.org/
         if: ${{ env.RESULT_NYAGOS }}
       - name: push awssamcli
         working-directory: apps/awssamcli
-        run: choco push
+        run: choco push --source https://push.chocolatey.org/
         if: ${{ env.RESULT_AWSSAMCLI }}
