@@ -1,8 +1,8 @@
 ﻿$ErrorActionPreference = 'Stop';
 
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url64 = 'https://github.com/aws/aws-sam-cli/releases/download/v1.137.0/AWS_SAM_CLI_64_PY3.msi'
-$checksum64 = 'bc5f2bff4342ac5b4a6ea86b64ed9e64f4c93f7de3cacf2e332038f7728be840'
+$url64 = 'https://github.com/aws/aws-sam-cli/releases/download/v1.137.1/AWS_SAM_CLI_64_PY3.msi'
+$checksum64 = '0af65601075038d4c768ddac95f7fb6358c3ca6c46de5da455469d05eb2ca824'
 
 $packageArgs = @{
   packageName    = $env:ChocolateyPackageName
