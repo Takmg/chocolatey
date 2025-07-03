@@ -4,12 +4,12 @@ $packageArgs = @{
     packageName    = $env:ChocolateyPackageName
     unzipLocation  = $destination
     softwareName   = 'nyagos*'
-    url            = 'https://github.com/nyaosorg/nyagos/releases/download/4.4.17_0/nyagos-4.4.17_0-windows-386.zip'
-    url64bit       = 'https://github.com/nyaosorg/nyagos/releases/download/4.4.17_0/nyagos-4.4.17_0-windows-amd64.zip'
+    url            = 'https://github.com/nyaosorg/nyagos/releases/download/4.4.17_1/nyagos-4.4.17_1-windows-386.zip'
+    url64bit       = 'https://github.com/nyaosorg/nyagos/releases/download/4.4.17_1/nyagos-4.4.17_1-windows-amd64.zip'
     checksumType   = 'sha256' 
     checksumType64 = 'sha256' 
-    checksum       = 'f13f50b9aaf61f2ba88915026de890454f5a52de34682e903883d6a1f459b04a'
-    checksum64     = '50d5a431429d4ccbc6e3075eb2be9c8ae17c712a4b09cbf0696a5a9f6bfb8b91'
+    checksum       = '9f43d86f7a6772b6d36a806a34377aa9140e8f2956c9ddd5fe4b0edf97958e17'
+    checksum64     = '72ded2eff3e45881ee4fd9f04f35c71d47159feddd839fe64f823d3824ac4161'
 }
 
 # Install nyagos
